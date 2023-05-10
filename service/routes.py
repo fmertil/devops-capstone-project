@@ -8,7 +8,14 @@ from flask import jsonify, request, make_response, abort, url_for   # noqa; F401
 from service.models import Account
 from service.common import status  # HTTP Status Codes
 from . import app  # Import Flask application
+from service import talisman # Disable forced HTTPS on the talisman instance
 
+
+@classmethod
+def setUpClass(cls):
+    """Run once before all tests"""
+    #{ other lines of code here ... }
+    talisman.force_https = False
 
 ############################################################
 # Health Endpoint
